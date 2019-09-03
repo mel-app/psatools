@@ -1,37 +1,28 @@
-import unittest
-import psatools
+import pytest
+from pytest import approx
+from psatools import * 
 
-class Testpsafuncs(unittest.TestCase):
 
-    def test_calci(self):
-        self.assertAlmostEqual(psatools.calci(10,11), 524.86, places=2,
-                         msg="Should be 524.86")
+def test_calci():
+    assert calci(10,11) == approx(524.86)
 
-    def test_calcp_withpf(self):   
-        self.assertAlmostEqual(psatools.calcp(0.5,220,0.95), 181.0, places=2,
-                         msg="Should be 181.0")
+def test_calcp_withpf():   
+    assert calcp(0.5,220,0.95) == approx(180.9993)
 
-    def test_calcp_nopf(self):   
-        self.assertAlmostEqual(psatools.calcp(0.5,220), 190.53, places=2,
-                         msg="Should be 190.53")
+def test_calcp_nopf():   
+    assert calcp(0.5,220) == approx(190.5255)
 
-    def test_calcpf(self):
-        self.assertAlmostEqual(psatools.calcpf(10,0.58785,11),0.893,places=3,
-                        msg="Should be 0.893")   
+def test_calcpf():
+    assert calcpf(10,0.58785,11) == approx(0.8928534)
 
-    def test_calcq(self):
-        self.assertAlmostEqual(psatools.calcq(15,10),11.18,places=2, 
-                              msg="Should be 11.18")                                   
+def test_calcq():
+    assert calcq(15,10) == approx (11.18033)                                   
 
-    def test_calcs(self):
-        self.assertAlmostEqual(psatools.calcs(3,4),5,places=2, 
-                              msg="Should be 5") 
+def test_calcs():
+    assert calcs(3,4) == approx(5) 
 
-    def test_calcir(self):   
-        self.assertAlmostEqual(psatools.calcir(10000,11000,2017,2019),
-                                0.0488,places=4, 
-                              msg="Should be 0.0488") 
-                       
+def test_calcir():   
+    assert calcir(10000,11000,2017,2019) == approx(.04880884)
 
-if __name__ == "__main__":
-    unittest.main()
+def test_calcshcs():                   
+    assert calcshcs(0.1,11) == approx(52.4863881) 

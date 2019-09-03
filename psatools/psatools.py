@@ -38,11 +38,13 @@ def calcir(init,final,startyear,endyear):
     """Calculates growth rate based on a start value and end value and a start
     year and end year.  Assumed annual compounding."""
     return (math.exp(math.log(final/init)/(endyear-startyear))-1)
-    
-def main():
-    pass
-    
-if __name__ == '__main__':
-    main()    
-    
+
+def calcshcs(Zpu, Vnom, Vpu=1.0):
+    """Calculates the short circuit current in Amperes.
+    Vpu = Pre-fault voltage (optional) 
+    Vnom = Vnom in kV
+    Zpu = Impedance in per unit on 100 MVA base
+    """
+    Spu = Vpu / Zpu
+    return 100 * Spu / (3**0.5 * Vnom)  
     
