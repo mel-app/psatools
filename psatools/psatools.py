@@ -17,23 +17,23 @@ def calci(MVA, kV):
     
 def calcpf(MW, kA, kV):
     """ Calculates three phase pf from MW, kV and kA"""
-    round(MW / (kV * kA * 3**0.5),2)
+    return MW / (kV * kA * 3**0.5)
 
-    
-#@unit    
 def calcp(kA, kV, cosphi = 1.0):
     """ Calculates three phase P in MW from kA and kV
     takes an optional input power factor""" 
     return 3**(0.5) * kV * kA * cosphi    
+
+def calcq(S, P):
+    """ Calculates reactive power given S and P
+    """
+    assert S > P, "S must be greater than P"
+    return (S**2 - P**2)**0.5    
     
-def calcs(MW,Mvar):
+def calcs(MW, Mvar):
     """ Calculates S from MW and Mvar"""
-    return (MW**2 + Mvar**2)**0.5
-    
-def calcc(I,V):
-    """Returns capacitance based on charging current."""
-    return (3**(1/2) * I) / (V * 2* math.pi * 50)
-    
+    return (MW**2 + Mvar**2)**0.5   
+  
 def calcir(init,final,startyear,endyear):
     """Calculates growth rate based on a start value and end value and a start
     year and end year.  Assumed annual compounding."""
@@ -41,7 +41,6 @@ def calcir(init,final,startyear,endyear):
     
 def main():
     pass
-    
     
 if __name__ == '__main__':
     main()    

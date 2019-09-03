@@ -7,4 +7,5 @@ from .psatools import(
     calcs,
     calcir,
     calcc,
+    calcq,
 )
