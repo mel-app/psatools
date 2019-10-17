@@ -1,6 +1,6 @@
 import pytest
 from pytest import approx
-from psatools import * 
+from psatools.eemath import *  
 
 
 def test_calci():

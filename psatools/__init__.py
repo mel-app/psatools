@@ -2,7 +2,7 @@
 """
 
 __version__ = "0.0.4"
-from .psatools import(
+from .eemath import(
     calci,
     calcpf,
     calcp,
