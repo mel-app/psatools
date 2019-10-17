@@ -30,9 +30,40 @@ def calcq(S, P):
     assert S > P, "S must be greater than P"
     return (S**2 - P**2)**0.5    
     
-def calcs(MW, Mvar):
-    """ Calculates S from MW and Mvar"""
-    return (MW**2 + Mvar**2)**0.5   
+def calcs(MW=None, Mvar=None, I=None, V=None):
+    """ Calculates S from two out of MW, Mvar, I, and V
+    
+    If providing I, then V is compulsory
+    If provding I, then either MW and Mvar is compulsory
+    
+    """
+    #run some checks
+    try:
+        if I is not None and V is None:
+            raise Exception("Voltage required if current entered")
+    except Exception as e:
+        print(e)
+        raise
+
+    inputs = 0
+    #count number of None arguments we get
+    if Mvar is not None:
+        inputs += 1
+    if MW is not None:
+        inputs += 1
+
+    try:
+        if inputs < 2 and I is None:
+            raise Exception("MW, Mvar are required if I not entered.")
+    except Exception as e:
+        print(e)
+        raise
+
+    if MW is not None and Mvar is not None:    
+        return (MW**2 + Mvar**2)**0.5
+    else:
+        #calculate using I and V
+        return (3**0.5 * V * I)   
   
 def calcir(init,final,startyear,endyear):
     """Calculates growth rate based on a start value and end value and a start
