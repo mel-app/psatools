@@ -1,6 +1,6 @@
 import pytest
 from pytest import approx
-from psatools import * 
+from psatools.psatools import * 
 
 
 def test_calci():
@@ -20,6 +20,7 @@ def test_calcq():
 
 def test_calcs():
     assert calcs(3,4) == approx(5) 
+    assert calcs(I = 1, V=220) == approx(381)
 
 def test_calcir():   
     assert calcir(10000,11000,2017,2019) == approx(.04880884)
